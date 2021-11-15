@@ -48,12 +48,12 @@ export type CardOptions = {
         /** Text on the bottom */
         /**subtitle: '',/
         /** Font Color */
-        color?: Color;
-        /** Custom Font */
         color: `#fff`
-    },
+        /** Custom Font */
+        
+    }
     /** Options for the avatar */
-    avatar?: {
+    avatar: {
         /** The Avatar Image, can be a URL/Canvas/Image or Buffer */
         image: user.displayAvatarURL({ format: 'png' }),
         /** Width of the outline around the avatar */
