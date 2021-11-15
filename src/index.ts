@@ -33,46 +33,54 @@ export var themes = {
     'code': { color: '#ffffff', image: join(root, 'code.png'), font: 'Source Sans Pro' },
 }
 
-type Color = `##ffffff`;
-type ImageResolvable = Canvas | Image | Buffer | string;
-
-export type CardOptions = {
-    /** Select a theme with some default options */
-    theme: (keyof typeof themes);
-    /** Options for the text on the card */
-    text: {
-        /** Text in the Top */
-        title: 'this is a test',
-        /**Text in the middle(big) */
-        text: 'test de 5 pesos',
-        /** Text on the bottom */
-        subtitle: 'si',
-        /** Font Color */
-        color:  '#ffffff'
-        /** Custom Font */
-        font: monospaced
-    },
-    /** Options for the avatar */
-    avatar: {
-        /** The Avatar Image, can be a URL/Canvas/Image or Buffer */
-        image: message.author.displayAvatarURL({ format: 'png' }),
-        /** Width of the outline around the avatar */
-        outlineWidth: 3,
-        /** Color of the outline */
-        outlineColor: '#ffffff'
-    }
-    /** Override the Background, can be a URL/Canvas/Image or Buffer  */
-    background: 'https://i.imgur.com/IMgtthp.jpeg,',
-    /** If the background should be blurred (true -> 3) */
-    blur: 3,
-    /** When enabled a blurred border is drawn, enabled by default */
-    border: true,
-    /** If enabled the edges will be rounded, enabled by default */
-    rounded?: true,
-    //custom?: ModuleFunction;
+const { Client, Intents } = require("discord.js");
+const { drawCard } = require('discord-welcome-card');
+const client = new Client({
+    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
 }
 
-
+type Color = `##ffffff`;
+type ImageResolvable = Canvas | Image | Buffer | string;
+client.on("messageCreate", async message => {
+    if(message.author.bot) return
+     const image = await drawCard({
+        /** Select a theme with some default options */
+        theme: "circuit",
+        /** Options for the text on the card */
+        text: {
+            /** Text in the Top */
+            title: 'this is a test',
+            /**Text in the middle(big) */
+            text: 'test de 5 pesos',
+            /** Text on the bottom */
+            subtitle: 'si',
+            /** Font Color */
+            color:  '#ffffff'
+            /** Custom Font */
+            font: monospaced
+        },
+        /** Options for the avatar */
+        avatar: {
+            /** The Avatar Image, can be a URL/Canvas/Image or Buffer */
+            image: message.author.displayAvatarURL({ format: 'png' }),
+            /** Width of the outline around the avatar */
+            outlineWidth: 3,
+            /** Color of the outline */
+            outlineColor: '#ffffff'
+        }
+        /** Override the Background, can be a URL/Canvas/Image or Buffer  */
+        background: 'https://i.imgur.com/IMgtthp.jpeg,',
+        /** If the background should be blurred (true -> 3) */
+        blur: 3,
+        /** When enabled a blurred border is drawn, enabled by default */
+        border: true,
+        /** If enabled the edges will be rounded, enabled by default */
+        rounded?: true,
+        //custom?: ModuleFunction;
+    }
+    message.channel.send({ files: [ image ] })
+}
+client.login('Your-Bot-Token');
 
 
 var count = 0;
