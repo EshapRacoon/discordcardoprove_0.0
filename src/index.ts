@@ -49,11 +49,11 @@ client.on("messageCreate", async message => {
         /** Options for the text on the card */
         text: {
             /** Text in the Top */
-            title: 'this is a test',
+            title: 'this is a test ${member.guild.name}',
             /**Text in the middle(big) */
             text: 'test de 5 pesos',
             /** Text on the bottom */
-            subtitle: 'si',
+            subtitle: 'si #${member.guild.memberCount}',
             /** Font Color */
             color:  '#ffffff'
             /** Custom Font */
