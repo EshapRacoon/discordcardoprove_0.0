@@ -4,7 +4,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { Gradient, Theme } from '@discord-card/core';
 export { Gradient, Theme } from '@discord-card/core';
-
+let channel = client.channels.resolve("909618960566190141")
 
 
 const production = true;
@@ -33,42 +33,42 @@ export var themes = {
     'code': { color: '#ffffff', image: join(root, 'code.png'), font: 'Source Sans Pro' },
 }
 
-type Color = `#${string}` | Gradient;
+type Color = `##ffffff`;
 type ImageResolvable = Canvas | Image | Buffer | string;
 
 export type CardOptions = {
     /** Select a theme with some default options */
-    theme?: (keyof typeof themes);
+    theme: (keyof typeof themes);
     /** Options for the text on the card */
-    text?: {
+    text: {
         /** Text in the Top */
-        title?: string;
+        title: 'this is a test',
         /**Text in the middle(big) */
-        text?: string;
+        text: 'test de 5 pesos',
         /** Text on the bottom */
-        subtitle?: string;
+        subtitle: 'si',
         /** Font Color */
-        color?: Color;
+        color:  '#ffffff'
         /** Custom Font */
-        font?: string;
+        font: monospaced
     },
     /** Options for the avatar */
-    avatar?: {
+    avatar: {
         /** The Avatar Image, can be a URL/Canvas/Image or Buffer */
-        image?: ImageResolvable;
+        image: message.author.displayAvatarURL({ format: 'png' }),
         /** Width of the outline around the avatar */
-        outlineWidth?: number;
+        outlineWidth: 3,
         /** Color of the outline */
-        outlineColor?: Color;
+        outlineColor: '#ffffff'
     }
     /** Override the Background, can be a URL/Canvas/Image or Buffer  */
-    background?: ImageResolvable;
+    background: 'https://i.imgur.com/IMgtthp.jpeg,',
     /** If the background should be blurred (true -> 3) */
-    blur?: boolean | number;
+    blur: 3,
     /** When enabled a blurred border is drawn, enabled by default */
-    border?: boolean;
+    border: true,
     /** If enabled the edges will be rounded, enabled by default */
-    rounded?: boolean;
+    rounded?: true,
     //custom?: ModuleFunction;
 }
 
