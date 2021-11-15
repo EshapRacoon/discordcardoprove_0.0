@@ -38,37 +38,39 @@ type ImageResolvable = Canvas | Image | Buffer | string;
 
 export type CardOptions = {
     /** Select a theme with some default options */
-    theme?: (keyof typeof themes);
+    theme: ('code');
     /** Options for the text on the card */
-    text?: {
+    text: {
         /** Text in the Top */
-        title?: string;
+        title: 'Welcome fellow traveler',
         /**Text in the middle(big) */
-        text?: string;
+        text: user.tag,
         /** Text on the bottom */
-        subtitle?: string;
+        /**subtitle: '',/
         /** Font Color */
         color?: Color;
         /** Custom Font */
-        font?: string;
+        color: `#fff`
     },
     /** Options for the avatar */
     avatar?: {
         /** The Avatar Image, can be a URL/Canvas/Image or Buffer */
-        image?: ImageResolvable;
+        image: user.displayAvatarURL({ format: 'png' }),
         /** Width of the outline around the avatar */
-        outlineWidth?: number;
+        outlineWidth: 3,
         /** Color of the outline */
-        outlineColor?: Color;
+        outlineColor: new Gradient('linear',
+            [0, '#1d1d53'],
+            [1, '#0e0e36']
     }
     /** Override the Background, can be a URL/Canvas/Image or Buffer  */
-    background?: ImageResolvable;
+    background: 'https://i.imgur.com/41Zlomj.jpeg',
     /** If the background should be blurred (true -> 3) */
-    blur?: boolean | number;
+       blur: 1,
     /** When enabled a blurred border is drawn, enabled by default */
-    border?: boolean;
+    border: true,
     /** If enabled the edges will be rounded, enabled by default */
-    rounded?: boolean;
+    rounded: true
     //custom?: ModuleFunction;
 }
 
